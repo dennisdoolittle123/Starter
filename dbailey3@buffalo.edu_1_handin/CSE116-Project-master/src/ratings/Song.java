@@ -1,4 +1,5 @@
 package ratings;
+import ratings.datastructures.LinkedListNode;
 
 import java.util.LinkedList;
 
@@ -38,8 +39,20 @@ public class Song {
     public void addRating(Rating rating){
         this.ratings.add(rating);
     }
-    public LinkedList<Rating> getRatings(){
-        return this.ratings;
+    public LinkedListNode<Rating> getRatings(){
+        LinkedListNode<Rating> head = null;
+        LinkedListNode<Rating> tail = null;
+        for (Rating rating : ratings){
+            LinkedListNode<Rating> newNode = new LinkedListNode<Rating>(rating,null);
+            if (head == null){
+                head = newNode;
+                tail = head;
+            }else{
+                tail.setNext(newNode);
+                tail = newNode;
+            }
+        }
+        return head;
     }
     public double averageRating(){
         double sum = 0;
