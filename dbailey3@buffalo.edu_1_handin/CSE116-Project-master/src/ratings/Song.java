@@ -1,12 +1,17 @@
 package ratings;
 
+import java.util.LinkedList;
+
 public class Song {
     private String title;
     private String artist;
     private String songID;
+    private LinkedList<Rating> ratings;
+
 
     public Song(String title, String artist, String songID){
         this.title = title;
+        this.ratings = new LinkedList<>();
         this.artist = artist;
         this.songID = songID;
 
@@ -29,6 +34,39 @@ public class Song {
     public void setSongID(String songID){
         this.songID=songID;
     }
+    public void addRating(Rating rating){
+        this.ratings.add(rating);
+    }
+    public LinkedList<Rating> getRatings(){
+        return this.ratings;
+    }
+    public double averageRating(){
+        double sum = 0;
+        int count = 0;
+        for (Rating rating : this.ratings){
+            if (rating.getRating() != -1){
+                sum += rating.getRating();
+                count++;
+            }
+        }
+        if (count == 0){
+            return 0;
+        }
+        return sum / count;
+    }
+    public boolean didReviewerRateSong(String reviewerID){
+        for (Rating rating : this.ratings){
+            if (rating.getReviewerID().equals(reviewerID)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public void removeRatingByReviewer(Reviewer reviewer){
+        this.ratings.removeIf(rating -> rating.getReviewerID().equals(reviewer));
+
+    }
+
 
 
 }

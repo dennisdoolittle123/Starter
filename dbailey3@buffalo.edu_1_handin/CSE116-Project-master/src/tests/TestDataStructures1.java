@@ -1,5 +1,5 @@
 package tests;
-import org.junit.Test;
+
 import ratings.Rating;
 import ratings.Reviewer;
 import ratings.Song;
@@ -18,11 +18,11 @@ public class TestDataStructures1 {
 
     }
 
-//    public void compareRatings(Rating computed, Rating expected) {
-//        assertTrue(computed.getRating() == expected.getRating());
-//        assertTrue(computed.getReviewerID().equals(expected.getReviewerID()));
-//    }
-//
+    public void compareRatings(Rating computed, Rating expected) {
+        assertTrue(computed.getRating() == expected.getRating());
+        assertTrue(computed.getReviewerID().equals(expected.getReviewerID()));
+    }
+
 //    public void checkRatingsList(LinkedListNode<Rating> computed, LinkedListNode<Rating> expected) {
 //        if (expected == null) {
 //            assertTrue(computed == null);
