@@ -9,6 +9,7 @@ public class Song {
     private LinkedList<Rating> ratings;
 
 
+
     public Song(String title, String artist, String songID){
         this.title = title;
         this.ratings = new LinkedList<>();
