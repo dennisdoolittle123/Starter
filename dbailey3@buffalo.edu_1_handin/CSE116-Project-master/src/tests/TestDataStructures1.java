@@ -11,17 +11,17 @@ public class TestDataStructures1 {
     // These test are provided for you. As you complete the task, uncomment these tests to test your code
     // You should use these tests as reference as you write your own tests in the future
 
-    private final double EPSILON = 0.001;
+   // private final double EPSILON = 0.001;
 
-    public void compareDoubles(double d1, double d2) {
-        assertTrue(d1 + " and " + d2 + " are not within " + EPSILON, Math.abs(d1 - d2) < EPSILON);
+   // public void compareDoubles(double d1, double d2) {
+     //   assertTrue(d1 + " and " + d2 + " are not within " + EPSILON, Math.abs(d1 - d2) < EPSILON);
 
-    }
+    //}
 
-    public void compareRatings(Rating computed, Rating expected) {
-        assertTrue(computed.getRating() == expected.getRating());
-        assertTrue(computed.getReviewerID().equals(expected.getReviewerID()));
-    }
+//    public void compareRatings(Rating computed, Rating expected) {
+  //      assertTrue(computed.getRating() == expected.getRating());
+    //    assertTrue(computed.getReviewerID().equals(expected.getReviewerID()));
+    //}
 
 //    public void checkRatingsList(LinkedListNode<Rating> computed, LinkedListNode<Rating> expected) {
 //        if (expected == null) {
