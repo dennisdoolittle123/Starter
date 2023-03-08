@@ -1,8 +1,8 @@
 package tests;
-
-//import ratings.Rating;
-//import ratings.Reviewer;
-//import ratings.Song;
+import org.junit.Test;
+import ratings.Rating;
+import ratings.Reviewer;
+import ratings.Song;
 
 import static org.junit.Assert.assertTrue;
 
