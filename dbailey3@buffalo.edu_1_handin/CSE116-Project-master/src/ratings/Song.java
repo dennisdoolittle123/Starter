@@ -43,7 +43,7 @@ public class Song {
         LinkedListNode<Rating> head = null;
         LinkedListNode<Rating> tail = null;
         for (Rating rating : ratings){
-            LinkedListNode<Rating> newNode = new LinkedListNode<Rating>(rating,head);
+            LinkedListNode<Rating> newNode = new LinkedListNode<Rating>(rating,tail);
             if (head == null){
                 head = newNode;
                 tail = head;
