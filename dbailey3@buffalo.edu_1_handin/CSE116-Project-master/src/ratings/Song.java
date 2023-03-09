@@ -38,9 +38,10 @@ public class Song {
     public void addRating(Rating rating){
         if (didReviewerRateSong(rating.getReviewerID())){
             System.out.println("Error reviewer already rated this song");
-            return;
+
+        }else{
+            this.ratings.add(rating);
         }
-        this.ratings.add(rating);
     }
     public LinkedListNode<Rating> getRatings(){
         LinkedListNode<Rating> head = null;
@@ -81,8 +82,8 @@ public class Song {
     }
     public void removeRatingByReviewer(Reviewer reviewer){
         this.ratings.removeIf(rating -> rating.getReviewerID().equals(reviewer));
-
     }
+
 
 
 
