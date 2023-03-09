@@ -77,10 +77,9 @@ public class Song {
         return false;
     }
     public void removeRatingByReviewer(Reviewer reviewer){
-        this.ratings.removeIf(rating -> rating.getReviewerID().equals(reviewer.getReviewerID()));
+        this.ratings.removeIf(rating -> rating.getReviewerID().equals(reviewer));
 
     }
-
 
 
 
