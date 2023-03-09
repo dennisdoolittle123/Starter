@@ -36,6 +36,10 @@ public class Song {
         this.songID=songID;
     }
     public void addRating(Rating rating){
+        if (didReviewerRateSong(rating.getReviewerID())){
+            System.out.println("Error reviewer already rated this song");
+            return;
+        }
         this.ratings.add(rating);
     }
     public LinkedListNode<Rating> getRatings(){
