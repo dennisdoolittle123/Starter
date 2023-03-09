@@ -1,6 +1,5 @@
 package ratings;
 import ratings.datastructures.LinkedListNode;
-
 import java.util.LinkedList;
 
 public class Song {
