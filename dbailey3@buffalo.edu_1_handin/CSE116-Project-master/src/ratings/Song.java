@@ -39,6 +39,7 @@ public class Song {
         if (didReviewerRateSong(rating.getReviewerID())){
             System.out.println("Error reviewer already rated this song");
 
+
         }else{
             this.ratings.add(rating);
         }
