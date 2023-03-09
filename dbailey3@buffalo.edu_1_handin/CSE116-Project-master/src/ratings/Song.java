@@ -85,6 +85,10 @@ public class Song {
 
 
     }
+    public double bayesianAverageRating(int extraRatings, int extraValue){
+        //stubbed out method (for now)
+        return 0.0;
+    }
 
 
 
