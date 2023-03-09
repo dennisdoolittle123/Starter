@@ -39,7 +39,6 @@ public class Song {
         if (didReviewerRateSong(rating.getReviewerID())){
             System.out.println("Error reviewer already rated this song");
 
-
         }else{
             this.ratings.add(rating);
         }
@@ -82,7 +81,9 @@ public class Song {
         return false;
     }
     public void removeRatingByReviewer(Reviewer reviewer){
-        this.ratings.removeIf(rating -> rating.getReviewerID().equals(reviewer));
+        ratings.removeIf(rating -> rating.getReviewerID().equals(reviewer.getReviewerID()));
+
+
     }
 
 
