@@ -3,6 +3,8 @@ import org.junit.Test;
 import ratings.Rating;
 import ratings.Reviewer;
 import ratings.Song;
+import ratings.Movie;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
@@ -66,6 +68,34 @@ public class TestClasses2 {
         double bayesianAvg = song.bayesianAverageRating(0, 0);
         assertEquals(4.5, bayesianAvg, 0.01);
     }
+    //Movie tests
+    @Test
+    public void testGetTitle(){
+        ArrayList<String> cast = new ArrayList<String>();
+        cast.add("John Favreau");
+        cast.add("Chris Pratt Mario");
+        cast.add("Steve");
+
+
+        Movie movie = new Movie ("Mario", cast);
+        assertEquals("Mario", movie.getTitle());
+    }
+    @Test
+    public void testGetCast(){
+        ArrayList<String> cast = new ArrayList<String>();
+        cast.add("Chef");
+        cast.add("My name");
+        cast.add("Minecraft");
+        Movie movie = new Movie("Minecraft movie", cast);
+        ArrayList<String> expected = new ArrayList<String>();
+        expected.add("chef");
+        expected.add("my name");
+        expected.add("minecraft");
+        assertEquals(expected, movie.getCast());
+
+    }
+
+
 
 
 
