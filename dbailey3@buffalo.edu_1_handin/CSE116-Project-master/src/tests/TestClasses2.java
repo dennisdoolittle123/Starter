@@ -5,8 +5,9 @@ import ratings.Reviewer;
 import ratings.Song;
 import ratings.Movie;
 import java.util.ArrayList;
-
+import ratings.datastructures.SongTitleComparator;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TestClasses2 {
 
@@ -92,8 +93,48 @@ public class TestClasses2 {
         expected.add("my name");
         expected.add("minecraft");
         assertEquals(expected, movie.getCast());
-
     }
+    public class ComparatorTest {
+        @Test
+        public void testComparatorCompare() {
+            Comparator<String> stringComparator = new Comparator<String>();
+            assertTrue(!stringComparator.compare("apple", "banana"));
+            assertTrue(!stringComparator.compare("banana", "apple"));
+            assertTrue(!stringComparator.compare("apple", "apple"));
+
+            Comparator<Integer> integerComparator = new Comparator<Integer>();
+            assertTrue(!integerComparator.compare(1, 2));
+            assertTrue(!integerComparator.compare(2, 1));
+            assertTrue(!integerComparator.compare(1, 1));
+
+            Song song1 = new Song("Title A", "Artist A", "ID A");
+            Song song2 = new Song("Title B", "Artist B", "ID B");
+            Song song3 = new Song("Title C", "Artist C", "ID C");
+
+            Comparator<Song> titleComparator = new SongTitleComparator();
+            assertTrue(titleComparator.compare(song1, song2));
+            assertTrue(!titleComparator.compare(song2, song1));
+            assertTrue(!titleComparator.compare(song1, song1));
+
+            List<Song> songs = new ArrayList<>();
+            songs.add(song2);
+            songs.add(song1);
+            songs.add(song3);
+
+            Collections.sort(songs, titleComparator);
+            assertEquals(songs.get(0), song1);
+            assertEquals(songs.get(1), song2);
+            assertEquals(songs.get(2), song3);
+
+            Comparator<Song> bayesianRatingComparator = new SongBayesianRatingComparator();
+            assertTrue(bayesianRatingComparator.compare(song1, song2));
+            assertTrue(!bayesianRatingComparator.compare(song2, song1));
+            assertTrue(!bayesianRatingComparator.compare(song1, song1));
+        }
+    }
+
+
+
 
 
 

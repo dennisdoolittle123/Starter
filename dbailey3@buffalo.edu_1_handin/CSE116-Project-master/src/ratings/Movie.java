@@ -23,8 +23,9 @@ public class Movie {
     public void addRating(int rating){
         //stubbed out
     }
-    public double bayseianAverageRating(int minNumRatings,double mean, double variance){
+    public double bayseianAverageRating(int extraRatings,double extraValue){
         //stubbed out
         return 0.0;
     }
+
 }
