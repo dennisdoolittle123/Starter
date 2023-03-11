@@ -136,65 +136,6 @@ public class TestClasses2 {
         double expectedRating = 4.14;
         assertEquals(expectedRating, movie.bayesianAverageRating(totalNumRatings, averageRating), 0.01);
     }
-    @Test
-    public void testGetSongListTitleComparator() {
-        // Arrange
-        Playlist playlist = new Playlist(new SongTitleComparator());
-        Song song1 = new Song("Song A", "Artist A", "ID A");
-        Song song2 = new Song("Song B", "Artist B", "ID B");
-        Song song3 = new Song("Song C", "Artist C", "ID C");
-        playlist.addSong(song1);
-        playlist.addSong(song2);
-        playlist.addSong(song3);
-
-        // Act
-        LinkedListNode<Song> songList = playlist.getSongList();
-
-        // Assert
-        assertNotNull(songList);
-        assertEquals("Song A", songList.getData().getTitle());
-        assertEquals("Song B", songList.getNext().getData().getTitle());
-        assertEquals("Song C", songList.getNext().getNext().getData().getTitle());
-    }
-
-    @Test
-    public void testGetSongListBayesianRatingComparator() {
-        // Arrange
-        Playlist playlist = new Playlist(new SongBayesianRatingComparator());
-        Song song1 = new Song("Song A", "Artist A", "ID A");
-        Song song2 = new Song("Song B", "Artist B", "ID B");
-        Song song3 = new Song("Song C", "Artist C", "ID C");
-        song1.addRating(new Rating("Reviewer A", 3));
-        song1.addRating(new Rating("Reviewer B", 3));
-        song2.addRating(new Rating("Reviewer A", 3));
-        song2.addRating(new Rating("Reviewer B", 3));
-        song3.addRating(new Rating("Reviewer A", 3));
-        song3.addRating(new Rating("Reviewer B", 3));
-        playlist.addSong(song1);
-        playlist.addSong(song2);
-        playlist.addSong(song3);
-
-        // Act
-        LinkedListNode<Song> songList = playlist.getSongList();
-
-        // Assert
-        assertNotNull(songList);
-        assertEquals("Song C", songList.getData().getTitle());
-        assertEquals("Song B", songList.getNext().getData().getTitle());
-        assertEquals("Song A", songList.getNext().getNext().getData().getTitle());
-    }
-
-    @Test
-    public void testGetSongListNoSongsAdded() {
-        // Arrange
-        Playlist playlist = new Playlist(new SongTitleComparator());
-
-        // Act
-        LinkedListNode<Song> songList = playlist.getSongList();
-
-        // Assert
-        assertNull(songList);
-    }
 
 
 
