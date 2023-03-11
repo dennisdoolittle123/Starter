@@ -9,11 +9,12 @@ public class Playlist {
     public Playlist(Comparator<Song>comparator){
         //stubbed out
     }
-    public void addsong(Song song){
-        //stubbed out
-    }
+
     public LinkedListNode<Song> getSongList(){
         //stubbed out
         return null;
+    }
+
+    public void addSong(Song song1) {
     }
 }

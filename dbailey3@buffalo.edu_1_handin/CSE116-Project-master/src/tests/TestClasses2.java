@@ -9,8 +9,10 @@ import ratings.datastructures.Comparator;
 import ratings.datastructures.LinkedListNode;
 import ratings.datastructures.SongBayesianRatingComparator;
 import ratings.datastructures.SongTitleComparator;
-
+import ratings.Playlist;
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class TestClasses2 {
 
@@ -135,6 +137,58 @@ public class TestClasses2 {
         double averageRating = 7.5;
         double expectedRating = 4.14;
         assertEquals(expectedRating, movie.bayesianAverageRating(totalNumRatings, averageRating), 0.01);
+    }
+    @Test
+    public void testAddSongAndEmptyGetSongList() {
+        Comparator<Song> titleComparator = new SongTitleComparator();
+        Playlist playlist = new Playlist((java.util.Comparator<Song>) titleComparator);
+        Song song = new Song("title", "artist", "songID");
+        playlist.addSong(song);
+        LinkedListNode<Song> head = playlist.getSongList();
+        assertEquals(song.getTitle(), head.getValue().getTitle());
+        assertNull(head.getNext());
+    }
+
+    @Test
+    public void testGetSongListWithOneSong() {
+        Comparator<Song> titleComparator = new SongTitleComparator();
+        Playlist playlist = new Playlist((java.util.Comparator<Song>) titleComparator);
+        Song song = new Song("title", "artist", "songID");
+        playlist.addSong(song);
+        LinkedListNode<Song> head = playlist.getSongList();
+        assertEquals(song.getTitle(), head.getValue().getTitle());
+        assertNull(head.getNext());
+    }
+
+    @Test
+    public void testGetSongListWithMultipleSongsSortedByTitle() {
+        Comparator<Song> titleComparator = new SongTitleComparator();
+        Playlist playlist = new Playlist((java.util.Comparator<Song>) titleComparator);
+        Song song1 = new Song("b", "artist", "songID1");
+        Song song2 = new Song("a", "artist", "songID2");
+        playlist.addSong(song1);
+        playlist.addSong(song2);
+        LinkedListNode<Song> head = playlist.getSongList();
+        assertEquals(song2.getTitle(), head.getValue().getTitle());
+        assertEquals(song1.getTitle(), head.getNext().getValue().getTitle());
+        assertNull(head.getNext().getNext());
+    }
+
+    @Test
+    public void testGetSongListWithMultipleSongsSortedByBayesianRating() {
+        Comparator<Song> ratingComparator = new SongBayesianRatingComparator();
+        Playlist playlist = new Playlist((java.util.Comparator<Song>) ratingComparator);
+        Song song1 = new Song("a", "artist", "songID1");
+        Song song2 = new Song("b", "artist", "songID2");
+        Song song3 = new Song("c", "artist", "songID3");
+        playlist.addSong(song1);
+        playlist.addSong(song2);
+        playlist.addSong(song3);
+        LinkedListNode<Song> head = playlist.getSongList();
+        assertEquals(song3.getTitle(), head.getValue().getTitle());
+        assertEquals(song2.getTitle(), head.getNext().getValue().getTitle());
+        assertEquals(song1.getTitle(), head.getNext().getNext().getValue().getTitle());
+        assertNull(head.getNext().getNext().getNext());
     }
 
 
