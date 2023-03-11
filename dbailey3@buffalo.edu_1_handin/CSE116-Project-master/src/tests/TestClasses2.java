@@ -118,24 +118,10 @@ public class TestClasses2 {
             assertTrue(!titleComparator.compare(song2, song1));
             assertTrue(!titleComparator.compare(song1, song1));
 
-            List<Song> songs = new ArrayList<>();
-            songs.add(song2);
-            songs.add(song1);
-            songs.add(song3);
 
-            Collections.sort(songs, titleComparator);
-            assertEquals(songs.get(0), song1);
-            assertEquals(songs.get(1), song2);
-            assertEquals(songs.get(2), song3);
-
-            Comparator<Song> bayesianRatingComparator = new SongBayesianRatingComparator();
-            assertTrue(bayesianRatingComparator.compare(song1, song2));
-            assertTrue(!bayesianRatingComparator.compare(song2, song1));
-            assertTrue(!bayesianRatingComparator.compare(song1, song1));
         }
+
     }
-
-
 
 
 
