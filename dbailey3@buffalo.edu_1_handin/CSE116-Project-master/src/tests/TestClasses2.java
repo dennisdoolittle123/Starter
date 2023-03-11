@@ -96,7 +96,6 @@ public class TestClasses2 {
         expected.add("minecraft");
         assertEquals(expected, movie.getCast());
     }
-    public class ComparatorTest {
         @Test
         public void testComparatorCompare() {
             Comparator<String> stringComparator = new Comparator<String>();
@@ -123,17 +122,3 @@ public class TestClasses2 {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
