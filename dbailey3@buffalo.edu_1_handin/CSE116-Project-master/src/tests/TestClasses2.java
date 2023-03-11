@@ -5,6 +5,8 @@ import ratings.Reviewer;
 import ratings.Song;
 import ratings.Movie;
 import java.util.ArrayList;
+import ratings.datastructures.Comparator;
+import ratings.datastructures.SongBayesianRatingComparator;
 import ratings.datastructures.SongTitleComparator;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
