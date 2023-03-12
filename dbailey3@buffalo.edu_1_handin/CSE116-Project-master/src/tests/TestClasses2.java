@@ -157,7 +157,7 @@ public class TestClasses2 {
     }
 
     @Test
-    public void testGetSongListWithOneSong() {
+    public void testGetSongListWithOneSonga() {
         Comparator<Song> titleComparator = new SongTitleComparator();
         Playlist playlist = new Playlist((java.util.Comparator<Song>) titleComparator);
         Song song = new Song("title", "artist", "songID");
@@ -203,6 +203,60 @@ public class TestClasses2 {
         assertEquals("", movie.getTitle());
         assertEquals(new ArrayList<>(), movie.getCast());
     }
+    @Test
+    void testGetSongListWithEmptyPlaylist() {
+        Playlist playlist = new Playlist((java.util.Comparator<Song>) new SongTitleComparator());
+        assertNull(playlist.getSongList());
+
+    }
+    @Test
+    void testGetSongListWithOneSong() {
+        Playlist playlist = new Playlist((java.util.Comparator<Song>) new SongTitleComparator());
+        Song song1 = new Song("Song A", "Artist A", "ID");
+        playlist.addSong(song1);
+        LinkedListNode<Song> songList = playlist.getSongList();
+        assertNotNull(songList);
+        assertEquals(song1.getTitle(), songList.getValue().getTitle());
+        assertEquals(song1.getArtist(), songList.getValue().getArtist());
+        assertNull(songList.getNext());
+    }
+    @Test
+    void testGetSongListWithMultipleSongs() {
+        Playlist playlist = new Playlist((java.util.Comparator<Song>) new SongBayesianRatingComparator());
+        Song song1 = new Song("Song A", "Artist A","ID");
+        Song song2 = new Song("Song B", "Artist B","ID");
+        Song song3 = new Song("Song C", "Artist C","ID");
+        Song song4 = new Song("Song D", "Artist D","ID");
+        song1.addRating(new Rating("Reviewer 1", 5));
+        song1.addRating(new Rating("Reviewer 2", 4));
+        song2.addRating(new Rating("Reviewer 1", 4));
+        song2.addRating(new Rating("Reviewer 2", 3));
+        song3.addRating(new Rating("Reviewer 1", 2));
+        song3.addRating(new Rating("Reviewer 2", 3));
+        song4.addRating(new Rating("Reviewer 1", 5));
+        song4.addRating(new Rating("Reviewer 2", 5));
+        playlist.addSong(song1);
+        playlist.addSong(song2);
+        playlist.addSong(song3);
+        playlist.addSong(song4);
+        LinkedListNode<Song> songList = playlist.getSongList();
+        assertNotNull(songList);
+        assertEquals(song4.getTitle(), songList.getValue().getTitle());
+        assertEquals(song4.getArtist(), songList.getValue().getArtist());
+        assertNotNull(songList.getNext());
+        assertEquals(song1.getTitle(), songList.getNext().getValue().getTitle());
+        assertEquals(song1.getArtist(), songList.getNext().getValue().getArtist());
+        assertNotNull(songList.getNext().getNext());
+        assertEquals(song2.getTitle(), songList.getNext().getNext().getValue().getTitle());
+        assertEquals(song2.getArtist(), songList.getNext().getNext().getValue().getArtist());
+        assertNotNull(songList.getNext().getNext().getNext());
+        assertEquals(song3.getTitle(), songList.getNext().getNext().getNext().getValue().getTitle());
+        assertEquals(song3.getArtist(), songList.getNext().getNext().getNext().getValue().getArtist());
+        assertNull(songList.getNext().getNext().getNext().getNext());
+    }
+
+
+
 
 
 
