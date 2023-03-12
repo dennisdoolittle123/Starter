@@ -24,6 +24,12 @@ public class TestClasses2 {
 
     }
     @Test
+    public void testBayesianAverageRatingNoRatings5AdditionalRatings() {
+        Song song = new Song("Bobby", "Bob Ross", "ID");
+        assertEquals(0.0, song.bayesianAverageRating(5, 5), 0.01);
+    }
+
+    @Test
     public void testBayesianAverageRatingWithRatings() {
         Song song = new Song("Life We Live", "Project Pat", "ID");
         double bayesianAvg = song.bayesianAverageRating(0, 0);
@@ -37,6 +43,7 @@ public class TestClasses2 {
         double bayesianAvg = song.bayesianAverageRating(2, 3);
         assertEquals(3.75, bayesianAvg, 0.01);
     }
+
     @Test
     public void testBayesianAverageRatingWithOnlyExtraRatings() {
         Song song = new Song("New Patek", "Uzi", "ID");
@@ -190,6 +197,7 @@ public class TestClasses2 {
         assertEquals(song1.getTitle(), head.getNext().getNext().getValue().getTitle());
         assertNull(head.getNext().getNext().getNext());
     }
+
 
 
 
