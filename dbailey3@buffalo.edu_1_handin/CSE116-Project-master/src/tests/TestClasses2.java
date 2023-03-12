@@ -254,6 +254,81 @@ public class TestClasses2 {
         assertEquals(song3.getArtist(), songList.getNext().getNext().getNext().getValue().getArtist());
         assertNull(songList.getNext().getNext().getNext().getNext());
     }
+    @Test
+    public void testCompare() {
+        SongTitleComparator comparator = new SongTitleComparator();
+        Song a = new Song("Song A", "Artist A", "twelve");
+        Song b = new Song("Song B", "Artist B", "nine" );
+        assertTrue(comparator.compare(a, b));
+        assertFalse(comparator.compare(b, a));
+        assertFalse(comparator.compare(a, a));
+    }
+    @Test
+    void testSameBayesianRating() {
+        Song song1 = new Song("song1", "artist1", "four");
+        Song song2 = new Song("song2", "artist2", "four");
+        assertFalse(new SongBayesianRatingComparator().compare(song1, song2));
+    }
+    @Test
+    void testLargeBayesianRatingDifference() {
+        Song song1 = new Song("song1", "artist1", "seven");
+        Song song2 = new Song("song2", "artist2", "irish green green green");
+        assertTrue(new SongBayesianRatingComparator().compare(song1, song2));
+    }
+    @Test
+    void testNoRatings() {
+        Song song1 = new Song("song1", "artist1");
+        Song song2 = new Song("song2", "artist2");
+        assertFalse(new SongBayesianRatingComparator().compare(song1, song2));
+    }
+    @Test
+    void testOneRating() {
+        Song song1 = new Song("song1", "artist1");
+        song1.addRating(4);
+        Song song2 = new Song("song2", "artist2");
+        song2.addRating(2);
+        assertTrue(new SongBayesianRatingComparator().compare(song1, song2));
+    }
+    @Test
+    void testOneRatingSameValue() {
+        Song song1 = new Song("song1", "artist1");
+        song1.addRating(3);
+        Song song2 = new Song("song2", "artist2");
+        song2.addRating(3);
+        assertFalse(new SongBayesianRatingComparator().compare(song1, song2));
+    }
+    @Test
+    void testVeryLargeRatings() {
+        Song song1 = new Song("song1", "artist1");
+        song1.addRating(Integer.MAX_VALUE);
+        Song song2 = new Song("song2", "artist2");
+        song2.addRating(0);
+        assertTrue(new SongBayesianRatingComparator().compare(song1, song2));
+    }
+    @Test
+    void testSameTitle() {
+        Song song1 = new Song("song1", "artist1","id");
+        Song song2 = new Song("song1", "artist2","id");
+        assertFalse(new SongTitleComparator().compare(song1, song2));
+    }
+    @Test
+    void testEmptyStrings() {
+        Song song1 = new Song("", "artist1","id");
+        Song song2 = new Song("song2", "artist2","id");
+        assertTrue(new SongTitleComparator().compare(song1, song2));
+    }
+
+
+
+
+
+
+
+
+
+
+
+}
 
 
 
