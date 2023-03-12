@@ -299,9 +299,9 @@ public class TestClasses2 {
     }
     @Test
     void testVeryLargeRatings() {
-        Song song1 = new Song("song1", "artist1");
+        Song song1 = new Song("song1", "artist1","ide");
         song1.addRating(Integer.MAX_VALUE);
-        Song song2 = new Song("song2", "artist2");
+        Song song2 = new Song("song2", "artist2","id");
         song2.addRating(0);
         assertTrue(new SongBayesianRatingComparator().compare(song1, song2));
     }
@@ -337,7 +337,7 @@ public class TestClasses2 {
 
 
 
-}
+
 
 
 
