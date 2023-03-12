@@ -277,32 +277,32 @@ public class TestClasses2 {
     }
     @Test
     void testNoRatings() {
-        Song song1 = new Song("song1", "artist1");
-        Song song2 = new Song("song2", "artist2");
+        Song song1 = new Song("song1", "artist1","id");
+        Song song2 = new Song("song2", "artist2","id");
         assertFalse(new SongBayesianRatingComparator().compare(song1, song2));
     }
     @Test
     void testOneRating() {
-        Song song1 = new Song("song1", "artist1");
-        song1.addRating(4);
-        Song song2 = new Song("song2", "artist2");
-        song2.addRating(2);
+        Song song1 = new Song("song1", "artist1","id");
+        song1.addRating(new Rating("james",4));
+        Song song2 = new Song("song2", "artist2","id");
+        song2.addRating(new Rating("james" ,2));
         assertTrue(new SongBayesianRatingComparator().compare(song1, song2));
     }
     @Test
     void testOneRatingSameValue() {
-        Song song1 = new Song("song1", "artist1");
-        song1.addRating(3);
-        Song song2 = new Song("song2", "artist2");
-        song2.addRating(3);
+        Song song1 = new Song("song1", "artist1","id");
+        song1.addRating(new Rating("james", 3));
+        Song song2 = new Song("song2", "artist2","id");
+        song2.addRating(new Rating("james", 3));
         assertFalse(new SongBayesianRatingComparator().compare(song1, song2));
     }
     @Test
     void testVeryLargeRatings() {
         Song song1 = new Song("song1", "artist1","ide");
-        song1.addRating(Integer.MAX_VALUE);
+        song1.addRating(new Rating("James",Integer.MAX_VALUE));
         Song song2 = new Song("song2", "artist2","id");
-        song2.addRating(0);
+        song2.addRating(new Rating("fortnite", 0));
         assertTrue(new SongBayesianRatingComparator().compare(song1, song2));
     }
     @Test
