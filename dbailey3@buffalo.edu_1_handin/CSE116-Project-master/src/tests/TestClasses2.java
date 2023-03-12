@@ -197,6 +197,13 @@ public class TestClasses2 {
         assertEquals(song1.getTitle(), head.getNext().getNext().getValue().getTitle());
         assertNull(head.getNext().getNext().getNext());
     }
+    @Test
+    public void testConstructorEmptyTitleAndCast() {
+        Movie movie = new Movie("", new ArrayList<>());
+        assertEquals("", movie.getTitle());
+        assertEquals(new ArrayList<>(), movie.getCast());
+    }
+
 
 
 
